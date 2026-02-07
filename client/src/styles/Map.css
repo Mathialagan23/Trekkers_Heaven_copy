@@ -1,0 +1,51 @@
+.map-page {
+  min-height: calc(100vh - 80px);
+  padding: 40px 0;
+  background-color: #f5f5f5;
+}
+
+.map-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.map-icon {
+  font-size: 48px;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.map-header h1 {
+  color: black;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.map-header p {
+  color: var(--light-text);
+  font-size: 18px;
+}
+
+.map-container {
+  width: 100%;
+  height: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--light-green);
+  margin-bottom: 20px;
+}
+
+.map-note {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-note p {
+  color: var(--light-text);
+  font-size: 14px;
+}
+

@@ -1,0 +1,123 @@
+.navbar {
+  /* background-color: black; */
+  /* background-color: rgb(33, 63, 34); */
+  color: white;
+  padding: 6px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  /* 🔥 Background image */
+  background-image: url("/asset/Green-pattern.jpg");
+  background-size: cover;
+  background-position: center;   /* center focus */
+  background-repeat: no-repeat;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  font-size: 28px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-links a {
+  color: white;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-links a:hover {
+  opacity: 0.8;
+}
+
+.navbar-user {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.btn-small {
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* Navbar-specific outline button: visible by default */
+.navbar .btn-outline {
+  background-color: white;
+  border: 2px solid transparent;
+  color: black;
+  padding: 6px 12px;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar .btn-outline:hover {
+  background-color: rgba(255,255,255,0.95);
+  color: black;
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-image: url("/asset/Green-pattern.jpg");
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar-links.open {
+    max-height: 300px; /* enough for all links */
+  }
+
+  .navbar-links a,
+  .navbar-links button,
+  .navbar-user {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+

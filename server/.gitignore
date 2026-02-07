@@ -1,0 +1,10 @@
+node_modules/
+.env
+*.log
+.DS_Store
+
+.env
+.env.*
+config.env
+server/src/config/config.env
+node_modules/
