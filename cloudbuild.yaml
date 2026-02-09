@@ -49,5 +49,3 @@ serviceAccount: projects/$PROJECT_ID/serviceAccounts/56183528744-compute@develop
 options:
   logging: CLOUD_LOGGING_ONLY
 
-Location: Repository
-Cloud Build config file: cloudbuild.yaml
