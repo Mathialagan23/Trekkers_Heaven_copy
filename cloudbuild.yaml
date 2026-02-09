@@ -1,6 +1,6 @@
 substitutions:
   _SERVICE_NAME: "trekkers-heaven"
-  _REGION: "global"
+  _REGION: "asia-south1"
 
 steps:
 - name: "node:18"
@@ -48,3 +48,6 @@ serviceAccount: projects/$PROJECT_ID/serviceAccounts/56183528744-compute@develop
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+Location: Repository
+Cloud Build config file: cloudbuild.yaml
