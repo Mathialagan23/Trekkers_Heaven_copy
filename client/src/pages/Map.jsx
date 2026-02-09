@@ -6,19 +6,36 @@ const Map = () => {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    if (mapRef.current) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY'}&libraries=places`;
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        const map = new window.google.maps.Map(mapRef.current, {
-          center: { lat: 0, lng: 0 },
-          zoom: 2
-        });
-      };
-      document.head.appendChild(script);
+    if (!mapRef.current) return;
+
+    // Prevent loading script multiple times
+    if (window.google && window.google.maps) {
+      new window.google.maps.Map(mapRef.current, {
+        center: { lat: 20.5937, lng: 78.9629 }, // India
+        zoom: 4,
+      });
+      return;
     }
+
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+    if (!apiKey) {
+      console.error('Google Maps API key is missing');
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&loading=async`;
+    script.async = true;
+
+    script.onload = () => {
+      new window.google.maps.Map(mapRef.current, {
+        center: { lat: 20.5937, lng: 78.9629 },
+        zoom: 4,
+      });
+    };
+
+    document.head.appendChild(script);
   }, []);
 
   return (
@@ -30,13 +47,9 @@ const Map = () => {
           <p>Visualize your destinations on the map</p>
         </div>
         <div ref={mapRef} className="map-container" />
-        <div className="map-note">
-          <p>Note: Add your Google Maps API key in the .env file to enable map functionality</p>
-        </div>
       </div>
     </div>
   );
 };
 
 export default Map;
-
