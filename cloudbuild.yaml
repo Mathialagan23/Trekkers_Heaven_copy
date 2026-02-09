@@ -43,3 +43,8 @@ images:
 - "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA"
 
 timeout: "1200s"
+
+serviceAccount: projects/$PROJECT_ID/serviceAccounts/56183528744-compute@developer.gserviceaccount.com
+
+options:
+  logging: CLOUD_LOGGING_ONLY
