@@ -10,4 +10,5 @@ COPY . .
 ENV NODE_ENV=production
 EXPOSE 8080
 
+RUN ls -la
 CMD ["node", "src/server.js"]
