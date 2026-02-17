@@ -1,51 +1,32 @@
 substitutions:
-  _SERVICE_NAME: "trekkers-heaven"
-  _REGION: "asia-south1"
+  _REGION: asia-south1
+  _REPOSITORY: backend-repo
+  _IMAGE: backend-api
+  _SERVICE: backend-service
 
 steps:
-- name: "node:18"
-  id: "Build client"
-  entrypoint: "bash"
-  args:
-  - -c
-  - |
-    set -e
-    cd client
-    npm ci
-    npm run build
-    rm -rf ../server/public || true
-    mkdir -p ../server/public
-    cp -r dist/* ../server/public/
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - $_REGION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE
+      - ./server
 
-- name: "gcr.io/cloud-builders/docker"
-  id: "Build image"
-  args: ["build", "-t", "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA", "server"]
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - $_REGION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE
 
-- name: "gcr.io/cloud-builders/docker"
-  id: "Push image"
-  args: ["push", "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA"]
-
-- name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-  id: "Deploy to Cloud Run"
-  entrypoint: "bash"
-  args:
-  - -c
-  - |
-    set -e
-    gcloud run deploy $_SERVICE_NAME \
-      --image=gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA \
-      --region=$_REGION \
-      --platform=managed \
-      --allow-unauthenticated \
-      --set-env-vars=NODE_ENV=production
-
-images:
-- "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$SHORT_SHA"
-
-timeout: "1200s"
-
-serviceAccount: projects/$PROJECT_ID/serviceAccounts/56183528744-compute@developer.gserviceaccount.com
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - $_SERVICE
+      - --image=$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/$_IMAGE
+      - --region=$_REGION
+      - --platform=managed
+      - --allow-unauthenticated
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
