@@ -19,7 +19,7 @@ const Blogs = () => {
   const fetchBlogs = async () => {
     try {
       const data = await getUserBlogs();
-      setBlogs(data);
+      setBlogs(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching blogs:', error);
     } finally {

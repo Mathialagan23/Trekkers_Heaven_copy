@@ -23,11 +23,17 @@ const __dirname = path.dirname(__filename);
 // middleware
 app.use(cors({
   origin: [
-    "https://your-project.web.app",
+    "https://strong-shelter-486415-c8.web.app",
     "http://localhost:3000"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
+
+// IMPORTANT: handle preflight
+app.options("*", cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

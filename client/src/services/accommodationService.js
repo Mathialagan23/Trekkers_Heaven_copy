@@ -2,7 +2,8 @@ import api from './api.js';
 
 export const getAccommodations = async () => {
   const response = await api.get('/accommodations');
-  return response.data;
+  const d = response.data;
+  return Array.isArray(d) ? d : [];
 };
 
 export const getAccommodation = async (id) => {

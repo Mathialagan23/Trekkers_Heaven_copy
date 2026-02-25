@@ -18,7 +18,7 @@ const Itineraries = () => {
   const fetchItineraries = async () => {
     try {
       const data = await getItineraries();
-      setItineraries(data);
+      setItineraries(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching itineraries:', error);
     } finally {

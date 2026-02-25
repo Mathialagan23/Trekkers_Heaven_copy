@@ -87,7 +87,7 @@ const Home = () => {
     const fetchBlogs = async () => {
       try {
         const data = await getPublicBlogs();
-        setBlogs(data.slice(0, 6));
+        setBlogs(Array.isArray(data) ? data.slice(0, 6) : []);
       } catch (error) {
         console.error('Error fetching blogs:', error);
       } finally {

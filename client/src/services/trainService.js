@@ -2,7 +2,8 @@ import api from './api.js';
 
 export const getTrains = async () => {
   const response = await api.get('/trains');
-  return response.data;
+  const d = response.data;
+  return Array.isArray(d) ? d : [];
 };
 
 export const getTrain = async (id) => {

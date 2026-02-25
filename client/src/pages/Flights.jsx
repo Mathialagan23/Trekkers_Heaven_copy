@@ -18,7 +18,7 @@ const Flights = () => {
   const fetchFlights = async () => {
     try {
       const data = await getFlights();
-      setFlights(data);
+      setFlights(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching flights:', error);
     } finally {

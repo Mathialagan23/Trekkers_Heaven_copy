@@ -7,7 +7,11 @@ export const createExpense = async (data) => {
 
 export const getExpenses = async (itineraryId) => {
   const response = await api.get(`/expenses/${itineraryId}`);
-  return response.data;
+  const d = response.data;
+  if (d && typeof d === 'object' && !Array.isArray(d)) {
+    return { expenses: Array.isArray(d.expenses) ? d.expenses : [], totals: d.totals || {} };
+  }
+  return { expenses: [], totals: {} };
 };
 
 export const updateExpense = async (id, data) => {

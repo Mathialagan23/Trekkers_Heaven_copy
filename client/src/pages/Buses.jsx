@@ -20,7 +20,7 @@ const Buses = () => {
     setLoading(true);
     try {
       const data = await getBuses();
-      setBuses(data);
+      setBuses(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error(err);
     } finally {

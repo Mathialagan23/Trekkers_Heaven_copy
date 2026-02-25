@@ -68,7 +68,7 @@ const Dashboard = () => {
     const load = async () => {
       try {
         const data = await getItineraries();
-        setItineraries(data);
+        setItineraries(Array.isArray(data) ? data : []);
 
         // restore active itinerary if stored
         const stored = localStorage.getItem('activeItineraryId');
@@ -105,7 +105,7 @@ const Dashboard = () => {
 
   const refreshItineraries = async () => {
     const data = await getItineraries();
-    setItineraries(data);
+    setItineraries(Array.isArray(data) ? data : []);
     if (activeId) {
       const found = data.find((i) => i._id === activeId);
       if (found) setActiveItinerary(formatActive(found));

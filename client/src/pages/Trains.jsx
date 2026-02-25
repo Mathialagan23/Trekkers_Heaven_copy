@@ -17,7 +17,7 @@ const Trains = () => {
     setLoading(true);
     try {
       const data = await getTrains();
-      setTrains(data);
+      setTrains(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error(err);
     } finally {

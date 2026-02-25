@@ -2,12 +2,14 @@ import api from './api.js';
 
 export const getPublicBlogs = async () => {
   const response = await api.get('/blogs/public');
-  return response.data;
+  const d = response.data;
+  return Array.isArray(d) ? d : [];
 };
 
 export const getUserBlogs = async () => {
   const response = await api.get('/blogs');
-  return response.data;
+  const d = response.data;
+  return Array.isArray(d) ? d : [];
 };
 
 export const getBlog = async (id) => {

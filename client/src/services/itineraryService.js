@@ -2,7 +2,8 @@ import api from './api.js';
 
 export const getItineraries = async () => {
   const response = await api.get('/itineraries');
-  return response.data;
+  const d = response.data;
+  return Array.isArray(d) ? d : [];
 };
 
 export const getItinerary = async (id) => {

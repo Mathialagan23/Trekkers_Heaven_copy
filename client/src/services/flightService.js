@@ -2,7 +2,8 @@ import api from './api.js';
 
 export const getFlights = async () => {
   const response = await api.get('/flights');
-  return response.data;
+  const d = response.data;
+  return Array.isArray(d) ? d : [];
 };
 
 export const getFlight = async (id) => {

@@ -18,7 +18,7 @@ const Accommodations = () => {
   const fetchAccommodations = async () => {
     try {
       const data = await getAccommodations();
-      setAccommodations(data);
+      setAccommodations(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching accommodations:', error);
     } finally {

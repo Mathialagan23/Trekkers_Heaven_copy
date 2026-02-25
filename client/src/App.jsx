@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AppRoutes from './routes';
@@ -9,11 +10,13 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <div className="App">
-          <Navbar />
-          <AppRoutes />
-          <Footer />
-        </div>
+        <ErrorBoundary>
+          <div className="App">
+            <Navbar />
+            <AppRoutes />
+            <Footer />
+          </div>
+        </ErrorBoundary>
       </AuthProvider>
     </BrowserRouter>
   );
