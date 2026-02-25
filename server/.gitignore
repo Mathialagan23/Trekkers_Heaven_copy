@@ -8,3 +8,6 @@ node_modules/
 config.env
 server/src/config/config.env
 node_modules/
+
+.firebase/
+firebase-debug.log
